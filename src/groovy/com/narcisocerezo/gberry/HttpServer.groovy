@@ -124,6 +124,25 @@ class HttpServer implements Runnable {
         commandCache = new SimpleCache( maxElements: config.commandCacheMaxSize )
         pageCache = new SimpleCache( maxElements: config.pageCacheMaxSize )
         sessionCache = new SimpleCache( maxElements: config.sessionCacheMaxSize )
+
+        if( config.documentRoot.exists() &&
+                config.documentRoot.listFiles(
+                        { File pathname -> return pathname.isFile() } as FileFilter
+                ).size() == 0 )
+        {
+            log.info "Created default index"
+            File defaultIndex = new File( config.documentRoot, "index.gsp" )
+            defaultIndex.write( """<html>
+<head>
+    <title>gberry server</title>
+</head>
+<body>
+    It works!
+    <br/>
+    gberry server at \${new Date()}
+</body>
+</html>""" )
+        }
     }
 
     private File checkFolder( String source, String defaultValue ) {
