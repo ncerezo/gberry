@@ -2,6 +2,7 @@ gberry
 ======
 
 Minimalistic http server based on groovy with some grails in it, designed for embedded usage in Raspberry PI or similar environments.
+
 While working on some projects with Raspberry PI I wanted to provide a simple administration interface, and what better than a web app.
 
 Being used to Grails and Groovy, I was really glad when raspbian included an ARM optimized version of Oracle Java by default. That meant that I could use Groovy. But sadly grails is too much for that little computer, being RAM the most limiting resource.
